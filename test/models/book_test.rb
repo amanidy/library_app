@@ -13,14 +13,14 @@ class BookTest < ActiveSupport::TestCase
       isbn: "1234567890",
       status: "available"
     )
-    
+
     book = Book.new(
       title: "Second Book",
       author: "Jane Smith",
       isbn: "1234567890",
       status: "available"
     )
-    
+
     assert_not book.save, "Saved the book with duplicate ISBN"
   end
 end

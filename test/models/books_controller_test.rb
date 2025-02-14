@@ -30,7 +30,7 @@ class BooksControllerTest < ActionDispatch::IntegrationTest
     )
 
     post borrow_book_url(book), params: { borrower_name: "John Doe" }
-    
+
     assert_redirected_to book_url(book)
     book.reload
     assert_equal "borrowed", book.status

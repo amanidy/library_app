@@ -16,11 +16,10 @@ class Borrowing < ApplicationRecord
   end
 
   def update_book_status
-    book.update(status: 'borrowed')
+    book.update(status: "borrowed")
   end
 
   def reset_book_status
-    book.update(status: 'available')
+    book.update(status: "available")
   end
 end
-

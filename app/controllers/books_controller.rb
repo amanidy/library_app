@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy, :borrow, :return]
+  before_action :set_book, only: [ :show, :edit, :update, :destroy, :borrow, :return ]
 
   def index
     @books = Book.all
@@ -14,10 +14,10 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.new(book_params)
-    @book.status = 'available'
+    @book.status = "available"
 
     if @book.save
-      redirect_to @book, notice: 'Book was successfully created.'
+      redirect_to @book, notice: "Book was successfully created."
     else
       render :new
     end
@@ -30,7 +30,7 @@ class BooksController < ApplicationController
 
   def update
     if @book.update(book_params)
-      redirect_to @book, notice: 'Book was successfully updated.'
+      redirect_to @book, notice: "Book was successfully updated."
     else
       render :edit
     end
@@ -38,7 +38,7 @@ class BooksController < ApplicationController
 
   def destroy
     @book.destroy
-    redirect_to books_url, notice: 'Book was successfully deleted.'
+    redirect_to books_url, notice: "Book was successfully deleted."
   end
 
   def borrow
@@ -47,25 +47,25 @@ class BooksController < ApplicationController
         borrower_name: params[:borrower_name],
         borrowed_at: Time.current
       )
-      
+
       if borrowing.save
-        @book.update(status: 'borrowed')
-        redirect_to @book, notice: 'Book was successfully borrowed.'
+        @book.update(status: "borrowed")
+        redirect_to @book, notice: "Book was successfully borrowed."
       else
-        redirect_to @book, alert: 'Error borrowing book.'
+        redirect_to @book, alert: "Error borrowing book."
       end
     else
-      redirect_to @book, alert: 'Book is not available.'
+      redirect_to @book, alert: "Book is not available."
     end
   end
 
   def return
     if borrowing = @book.current_borrowing
       borrowing.update(returned_at: Time.current)
-      @book.update(status: 'available')
-      redirect_to @book, notice: 'Book was successfully returned.'
+      @book.update(status: "available")
+      redirect_to @book, notice: "Book was successfully returned."
     else
-      redirect_to @book, alert: 'Book was not borrowed.'
+      redirect_to @book, alert: "Book was not borrowed."
     end
   end
 
@@ -75,7 +75,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
   end
 
-  
+
 
   def book_params
     params.require(:book).permit(:title, :author, :isbn)
