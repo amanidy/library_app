@@ -1,0 +1,72 @@
+<div class="book-details">
+  <header class="page-header">
+    <h1><%= @book.title %></h1>
+    <div class="header-actions">
+      <%= link_to 'Edit Book', edit_book_path(@book), class: 'button button-secondary' %>
+      <%= link_to 'Back to Books', books_path, class: 'button' %>
+    </div>
+  </header>
+
+  <div class="details-grid">
+    <div class="detail-item">
+      <h3>Author</h3>
+      <p><%= @book.author %></p>
+    </div>
+
+    <div class="detail-item">
+      <h3>ISBN</h3>
+      <p><%= @book.isbn %></p>
+    </div>
+
+    <div class="detail-item">
+      <h3>Status</h3>
+      <p><span class="status-badge <%= @book.status %>"><%= @book.status %></span></p>
+    </div>
+
+    <% if @book.current_borrower %>
+      <div class="detail-item">
+        <h3>Currently Borrowed By</h3>
+        <p><%= @book.current_borrower %></p>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="book-actions">
+    <% if @book.available? %>
+      <%= form_tag borrow_book_path(@book), method: :post, class: 'borrow-form' do %>
+        <div class="field">
+          <%= text_field_tag :borrower_name, nil, placeholder: 'Borrower Name', required: true %>
+        </div>
+        <%= submit_tag 'Borrow Book', class: 'button' %>
+      <% end %>
+    <% else %>
+      <%= button_to 'Return Book', return_book_path(@book), method: :post, class: 'button' %>
+    <% end %>
+  </div>
+
+  <section class="borrowing-history">
+    <h2>Borrowing History</h2>
+    <% if @book.borrowings.any? %>
+      <table>
+        <thead>
+          <tr>
+            <th>Borrower</th>
+            <th>Borrowed On</th>
+            <th>Returned On</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @book.borrowings.order(borrowed_at: :desc).each do |borrowing| %>
+            <tr>
+              <td><%= borrowing.borrower_name %></td>
+              <td><%= borrowing.borrowed_at.strftime("%B %d, %Y") %></td>
+              <td><%= borrowing.returned_at ? borrowing.returned_at.strftime("%B %d, %Y") : "Not returned" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p>No borrowing history yet.</p>
+    <% end %>
+  </section>
+</div>

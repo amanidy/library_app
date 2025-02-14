@@ -1,0 +1,29 @@
+<h1>Edit Book</h1>
+
+<%= form_with(model: @book, local: true) do |form| %>
+  <div>
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :author %>
+    <%= form.text_field :author %>
+  </div>
+
+  <div>
+    <%= form.label :isbn %>
+    <%= form.text_field :isbn %>
+  </div>
+
+  <div>
+    <%= form.label :status %>
+    <%= form.select :status, [['Available', 'available'], ['Checked Out', 'checked_out']] %>
+  </div>
+
+  <div>
+    <%= form.submit "Update Book" %>
+  </div>
+<% end %>
+
+<%= link_to 'Back to Books', books_path %>

@@ -1,0 +1,107 @@
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.header-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+
+.status-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.status-badge.available {
+  background-color: #DEF7EC;
+  color: #03543F;
+}
+
+.status-badge.borrowed {
+  background-color: #FEE2E2;
+  color: #991B1B;
+}
+
+
+.button-small {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+}
+
+.button-secondary {
+  background-color: #6B7280;
+}
+
+.button-secondary:hover {
+  background-color: #4B5563;
+}
+
+.button-danger {
+  background-color: #DC2626;
+}
+
+.button-danger:hover {
+  background-color: #B91C1C;
+}
+
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.detail-item {
+  background-color: #F9FAFB;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.detail-item h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.875rem;
+  color: #6B7280;
+  text-transform: uppercase;
+}
+
+.detail-item p {
+  margin: 0;
+  font-size: 1.125rem;
+  color: #111827;
+}
+
+
+.book-actions {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background-color: #F9FAFB;
+  border-radius: 0.5rem;
+}
+
+.borrowing-history {
+  margin-top: 2rem;
+}
+
+.borrowing-history h2 {
+  margin-bottom: 1rem;
+}
+
+
+.empty-state {
+  text-align: center;
+  padding: 3rem;
+  background-color: #F9FAFB;
+  border-radius: 0.5rem;
+}
+
+.empty-state p {
+  margin-bottom: 1rem;
+  color: #6B7280;
+}
